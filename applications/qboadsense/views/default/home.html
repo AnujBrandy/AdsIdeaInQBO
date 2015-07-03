@@ -1,0 +1,13 @@
+{{extend 'layout.html'}}
+<h1>Hello</h1>
+{{for i in list_of_ads:}}
+	{{=i.ads_content}}<br/>
+{{pass}}
+<br/>
+<br/>
+<a href="{{=URL('create_company')}}">Add Company</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="{{=URL('create_ads')}}">Create Ads</a>
+<br/>
+<a href="{{=URL('login_qbo')}}">Login QBO</a>
+<br/>

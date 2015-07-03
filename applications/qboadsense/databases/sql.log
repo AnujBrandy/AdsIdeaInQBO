@@ -1,0 +1,86 @@
+timestamp: 2015-07-02T20:40:47.050279
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2015-07-02T20:40:47.052165
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2015-07-02T20:40:47.053703
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2015-07-02T20:40:47.055155
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2015-07-02T20:40:47.056460
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2015-07-02T20:40:47.058018
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2015-07-02T22:11:56.268801
+CREATE TABLE company(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    company_name CHAR(512) NOT NULL,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2015-07-02T22:12:25.657543
+CREATE TABLE ads(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    company_id INTEGER REFERENCES company (id) ON DELETE CASCADE,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    company_url CHAR(512) NOT NULL,
+    invoice_counter INTEGER,
+    ads_content TEXT
+);
+success!
+timestamp: 2015-07-02T22:30:32.451595
+ALTER TABLE ads ADD post TIMESTAMP;
+success!
+timestamp: 2015-07-03T03:39:09.176851
+ALTER TABLE ads ADD ad_cost INTEGER;
+success!
+timestamp: 2015-07-03T03:39:28.143670
+CREATE TABLE user_transaction(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id_1 INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    user_id_2 INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    amount INTEGER
+);
+success!

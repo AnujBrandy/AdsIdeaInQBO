@@ -1,0 +1,89 @@
+{{extend 'layout.html'}}
+<br/>
+<br/>
+<h1 align="center">Welcome </h1>
+
+<h2 align="center">My Ads</h2>
+<div class="panel panel-default">
+
+<table class="table">
+	<tr>
+		<td><h3>
+			Company Name
+		</h3>
+		</td>
+		<td><h3>
+			Company URL
+		</h3>
+		</td>
+		<td>
+			<h3>
+			Ad Content
+		</h3>
+		</td>
+		<td>
+			<h3>
+			Cost Of Ad
+		</h3>
+		</td>
+	</tr>
+{{for i in list_of_ads:}}
+<tr>
+	{{company_name=db(db.company.id==i.company_id).select(db.company.company_name)}}
+<td>	
+	{{=company_name[0]['company_name']}}
+</td>
+<td>
+	{{=i.company_url}}
+</td>
+	<td>{{=i.ads_content}}
+	</td>
+	<td>{{=i.ad_cost}}
+	</td></tr><br/>
+{{pass}}
+</table>
+</div>
+<br/>
+<br/>
+<ul class="nav nav-tabs">
+<li role="presentation" class="active" type="button">
+<div>
+	<button width="100px">
+<a href="{{=URL('create_company')}}">Add Company</a>
+</button>
+
+</div>
+</li>
+<li role="presentation" class="active" type="button">
+<div>
+<button width="100px">
+	<a href="{{=URL('create_ads')}}">Create Ads</a>
+</button>
+<br/>
+</div>
+</li>
+<li role="presentation" class="active" type="button">
+<div>
+	<button width="100px">
+<a href="{{=URL('login_qbo')}}">Post Ad On QuickBooks</a>
+</button>
+
+<br/>
+</div>
+</li>
+<li role="presentation" class="active" type="button">
+<div><button width="100px">
+<a href="{{=URL('select_ad')}}">Select Ads In Your Company</a></button>
+<br/>
+</div>
+</li>
+<li role="presentation" class="active" type="button">
+<div>
+
+<button width="100px">
+<a href="{{=URL('see_your_ad')}}">Show Ads For Your Company</a>
+</button>
+<br/>
+</div>
+</li>
+</ul>

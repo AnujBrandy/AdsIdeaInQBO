@@ -1,0 +1,49 @@
+{{extend 'layout.html'}}
+<br/><br/>
+<h1 align="center">
+	Ad to be posted
+	</h1>
+</br>
+
+	<div class="panel panel-default">
+	<table class="table">
+		<tr>
+			<td><h3>
+				Company Name
+			</h3>
+			</td>
+			<td><h3>
+				AD Content
+			</h3>
+			</td>
+			<td>
+				<h3>
+				Company URL
+			</h3>
+			</td>
+
+		</tr>
+
+		<tr>
+
+			<td>
+{{=company_name.company_name}}
+</td>
+<td>
+{{=ad_content}}
+</td>
+<td>
+{{=company_url}}
+</td>
+</tr>
+</table>
+</div>
+
+
+<br/>
+<div style="margin-left:45%;">
+<button align="center">
+<a href="{{=URL('login_qbo')}}">Post Your Ad</a>
+</button>
+</div>
+<br/>

@@ -1,0 +1,73 @@
+{{extend 'layout.html'}}
+<br/>
+<br/>
+<h1 align="center"> Select The AD To Be Displayed
+</h1>
+
+<br/>
+<form action="{{=URL('save_ads')}}" method="POST">
+<div class="panel panel-default">
+<table class="table" border="1px">
+	<tr>
+			<td>
+				<h3>
+				Check
+			</h3>
+			</td>
+			<td>
+				<h3>
+				Company Name
+			</h3>
+			</td>
+			<td>
+				<h3>
+				Company URL
+			</h3>
+			</td>
+			<td>
+				<h3>
+				AD Cost
+			</h3>
+			</td>
+			<td>
+				<h3>
+				AD Content
+			</h3>
+			</td>
+		</tr>
+
+{{for i in list_of_ads:}}
+
+	
+				<tr>
+			<td>
+	<input type="radio" name="ads" value="{{=i.id}}">
+</td>
+
+{{company_name=db(db.company.id==i.company_id).select(db.company.company_name)}}
+
+
+		
+			<td>
+{{=company_name[0]['company_name']}}
+</td>
+<td>
+{{=i.company_url}}
+</td>
+<td>
+{{=i.ad_cost}}
+</td>
+<td>
+{{=i.ads_content}}
+</td>
+</tr>
+
+
+{{pass}}
+</table>
+</div>
+<br/>
+<div style="margin-left:45%;">
+<input type="submit" value="SUBMIT" align="center" >
+</div>
+</form>
